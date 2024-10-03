@@ -1,1 +1,24 @@
+Bay(num_bins, bay_ID, bay_location, height) 
 
+Primary key: bay_ID 
+
+
+Bin(bin_num, bin_size, max_load, bay_ID) 
+
+Primary key: bin_num 
+
+Foreign key: bay_ID 
+
+ 
+ForkLift(bay_ID, forklift_ID, max_carry, engine_type) 
+
+Primary key: forklift_ID 
+
+Foreign key: bay_ID 
+
+ 
+Item(item_ID, arrive_date, item_weight, bin_date, bin_num, bay_ID) 
+
+Primary key: item_ID 
+
+Foreign key: bin_num, bay_ID 
