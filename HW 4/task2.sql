@@ -21,6 +21,3 @@ WHERE petname = 'Puffball';
 
 DELETE FROM petPet 
 WHERE petname = 'Buffy' AND owner = 'Harold';
-
-DELETE FROM petEvent 
-WHERE petname = 'Buffy' AND owner = 'Harold';
