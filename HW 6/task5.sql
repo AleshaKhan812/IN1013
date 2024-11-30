@@ -51,18 +51,16 @@ ORDER BY Total_Bill_Amount DESC;
 --5
 
 SELECT 
-    subquery.cust_name AS Customer_Name,
-    subquery.Average_Spending
+    Customer_Averages.cust_name AS Customer_Name,
+    Customer_Averages.Average_Spending
 FROM 
     (SELECT 
         restBill.cust_name,
         AVG(restBill.bill_total) AS Average_Spending
-    FROM 
-        restBill
-    GROUP BY 
-        restBill.cust_name) AS subquery
-WHERE 
-    subquery.Average_Spending > 400;
+     FROM restBill
+     GROUP BY restBill.cust_name) AS Customer_Averages
+WHERE Customer_Averages.Average_Spending > 400;
+
 
 --6
 
