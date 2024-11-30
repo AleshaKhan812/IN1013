@@ -1,19 +1,24 @@
 --1
 
 SELECT 
-    restStaff.first_name, 
-    restStaff.surname,
-    restBill.bill_date AS Bill_Date,
-    COUNT(restBill.bill_no) AS Bill_Count
-FROM restBill
-JOIN restStaff 
-ON restBill.waiter_no = restStaff.staff_no
-GROUP BY 
-    restStaff.first_name, 
-    restStaff.surname, 
-    restBill.bill_date
-HAVING 
-    COUNT(restBill.bill_no) >= 2;
+    Waiter_Bills.first_name AS Waiter_First_Name,
+    Waiter_Bills.surname AS Waiter_Surname,
+    Waiter_Bills.bill_date AS Bill_Date,
+    Waiter_Bills.Bill_Count
+FROM 
+    (SELECT 
+        restStaff.first_name,
+        restStaff.surname,
+        restBill.bill_date,
+        COUNT(restBill.bill_no) AS Bill_Count
+     FROM 
+        restBill
+     JOIN 
+        restStaff ON restBill.waiter_no = restStaff.staff_no
+     GROUP BY 
+        restStaff.first_name, restStaff.surname, restBill.bill_date) AS Waiter_Bills
+WHERE 
+    Waiter_Bills.Bill_Count >= 2;
 
 --2
 
@@ -65,17 +70,23 @@ WHERE Customer_Averages.Average_Spending > 400;
 --6
 
 SELECT 
-    restStaff.first_name, 
-    restStaff.surname,
-    restBill.bill_date AS Bill_Date,
-    COUNT(restBill.bill_no) AS Bill_Count
-FROM restBill
-JOIN restStaff 
-ON restBill.waiter_no = restStaff.staff_no
-GROUP BY 
-    restStaff.first_name, 
-    restStaff.surname, 
-    restBill.bill_date
-HAVING 
-    COUNT(restBill.bill_no) >= 3;
+    Waiter_Bills.first_name AS Waiter_First_Name,
+    Waiter_Bills.surname AS Waiter_Surname,
+    Waiter_Bills.bill_date AS Bill_Date,
+    Waiter_Bills.Bill_Count
+FROM 
+    (SELECT 
+        restStaff.first_name,
+        restStaff.surname,
+        restBill.bill_date,
+        COUNT(restBill.bill_no) AS Bill_Count
+     FROM 
+        restBill
+     JOIN 
+        restStaff ON restBill.waiter_no = restStaff.staff_no
+     GROUP BY 
+        restStaff.first_name, restStaff.surname, restBill.bill_date) AS Waiter_Bills
+WHERE 
+    Waiter_Bills.Bill_Count >= 3;
+
 
